@@ -206,15 +206,22 @@ namespace SkalProj_Datastrukturer_Minne
                         //customerIndex--; // It shows that the customer once removed can enter the queue again. 
                         break;
                     case "3":
-                        Console.WriteLine("Choose a name from the list to reverse" + string.Join(" , " + customers));
-                        string name = Console.ReadLine();
-                        string reverseName = " ".Trim();
+                        Console.WriteLine("Choose a name from the list to reverse: " + string.Join(", ", customers));
+                        string name = Console.ReadLine().Trim();
 
-                        for (var i = name.Length-1; i >=0; i--)
-                        { 
-                        reverseName += name[i];
+                        if (!customers.Contains(name))
+                        {
+                            Console.WriteLine("Please enter a name from the list.");
+                            break;
                         }
-                        Console.WriteLine(reverseName);
+
+                        string reverseName = "";
+                        for (int i = name.Length - 1; i >= 0; i--)
+                        {
+                            reverseName += name[i];
+                        }
+
+                        Console.WriteLine($"The reversed name is: {reverseName}");
                         break;
                     default:
                         Console.WriteLine("Invalid input. Use 1, 2, 3 or 'exit'.");
