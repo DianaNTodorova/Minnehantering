@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -100,13 +101,13 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '-':
                         theList.Remove(value);
-                        Console.WriteLine($"Name {value} is removed to the list");
+                        Console.WriteLine($"Name {value} is removed from the list");
                         break;
                     default :
                         Console.WriteLine("Please enter + or - to add/remove a name!");
                         break;
                 }
-                Console.WriteLine($"The list contains {theList.Count} number of values");
+                Console.WriteLine($"The list contains {theList.Count} number of values and {theList.Capacity} of the whole capacity");
             }
 
         }
@@ -145,13 +146,13 @@ namespace SkalProj_Datastrukturer_Minne
                         case "2":
                         if (queue.Count>0)
                         {
-                            string firstIn = queue[0];
+                            string firstIn = queue[0]; //the first customer in the queue if the list is not null
                             queue.RemoveAt(0);
                             Console.WriteLine( firstIn + " leaves the queue.");
 
                         }
                         break;
-                    default:
+                        default:
                             Console.WriteLine("Invalid input. Use 1, 2, or 'exit'.");
                             break;
 
@@ -174,6 +175,58 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            List<string> customers = new List<string>() { "Ole", "Kalle", "Nalle", "Emma", "Daniel", "Anna" };
+            List<string> queue = new List<string>();
+    
+            int customerIndex = 0;
+            Console.WriteLine("Ica opens and the cash register and it is empty. Press 1/ to add to the queue and 2/ to remove 3/reverse from the queue");
+
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (input.ToLower() == "exit")
+                    break;
+
+
+
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine(customers[customerIndex] + " enteres the queue.");
+                        queue.Add(customers[customerIndex]);
+                        customerIndex++;
+                        Console.WriteLine("The queue contains: " + string.Join(" , ", queue));
+                        break;
+
+                    case "2":
+                        
+                        var lastIn = queue[queue.Count-1];
+                        queue.Remove(lastIn);
+                        Console.WriteLine(lastIn + " leaves the queue.");
+                        //customerIndex--; // It shows that the customer once removed can enter the queue again. 
+                        break;
+                    case "3":
+                        Console.WriteLine("Choose a name from the list to reverse" + string.Join(" , " + customers));
+                        string name = Console.ReadLine();
+                        string reverseName = " ".Trim();
+
+                        for (var i = name.Length-1; i >=0; i--)
+                        { 
+                        reverseName += name[i];
+                        }
+                        Console.WriteLine(reverseName);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input. Use 1, 2, 3 or 'exit'.");
+                        break;
+
+                }
+
+
+
+
+
+            }
         }
 
         static void CheckParanthesis()
