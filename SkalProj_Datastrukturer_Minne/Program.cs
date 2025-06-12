@@ -72,12 +72,43 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            while (true)
+            {
 
-            //switch(nav){...}
+                Console.WriteLine("Enter a +Name to add a new name, -Name to remove a Name, or Exit to return to the Main Menu!");
+                string input = Console.ReadLine();
+                // adding some validation for the input 
+                if (string.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("Please add an invalid input!");
+                    continue;
+                }
+                else if (input.ToLower() == "exit")
+                {
+                    break;
+                }
+
+                char nav = input[0];
+                string value = input.Substring(1);
+
+                switch (nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        Console.WriteLine($"Name {value} is added to the list");
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        Console.WriteLine($"Name {value} is removed to the list");
+                        break;
+                    default :
+                        Console.WriteLine("Please enter + or - to add/remove a name!");
+                        break;
+                }
+                Console.WriteLine($"The list contains {theList.Count} number of values");
+            }
+
         }
 
         /// <summary>
