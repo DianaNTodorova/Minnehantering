@@ -121,6 +121,47 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            List<string> customers= new List<string>() { "Ole","Kalle","Nalle", "Emma", "Daniel", "Anna"};
+            List<string> queue = new List<string>();
+            int customerIndex = 0;
+            Console.WriteLine("Ica opens and the cash register and it is empty. Press 1/ to add to the queue and 2/ to remove from the queue");
+            
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (input.ToLower() == "exit")
+                    break;
+
+              
+
+                    switch (input) 
+                    {
+                        case "1":
+                            Console.WriteLine(customers[customerIndex] + " enteres the queue.");
+                            queue.Add(customers[customerIndex]);
+                            customerIndex++;
+                        break;
+
+                        case "2":
+                        if (queue.Count>0)
+                        {
+                            string firstIn = queue[0];
+                            queue.RemoveAt(0);
+                            Console.WriteLine( firstIn + " leaves the queue.");
+
+                        }
+                        break;
+                    default:
+                            Console.WriteLine("Invalid input. Use 1, 2, or 'exit'.");
+                            break;
+
+                    }
+
+                
+
+
+            }
+
         }
 
         /// <summary>
