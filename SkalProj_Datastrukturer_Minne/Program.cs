@@ -243,9 +243,51 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            Console.WriteLine("Write a string to check if the parantesis are wellformed ");
+            string input = Console.ReadLine();
+          
 
+            // case { } 
+            if (input != null && input.Contains('{'))
+            {
+                bool includesClosing = input.Contains('}');
+                bool closingComesAfter = input.IndexOf('{') < input.IndexOf('}');
+                bool balancedCount = input.Count(c => c == '{') == input.Count(c => c == '}');
+
+                if (includesClosing && closingComesAfter && balancedCount)
+                {
+                    Console.WriteLine("Correct use of {}");
+                }
+                else { Console.WriteLine("Incorrect use of parentasis"); }
+            }
+
+            // case [ ]
+            if (input.Contains('['))
+            {
+                bool includesClosing = input.Contains(']');
+                bool closingComesAfter = input.IndexOf('[') < input.IndexOf(']'); //checks if the closing parentasis comes after the opening one
+                bool balancedCount = input.Count(c => c == '[') == input.Count(c => c == ']');
+
+                if (includesClosing && closingComesAfter && balancedCount)
+                {
+                    Console.WriteLine("Correct use of []");
+                }
+                else { Console.WriteLine("Incorrect use of parentasis"); }
+            }
+            // case ( )
+            if (input.Contains('('))
+            {
+                bool includesClosing = input.Contains(')');
+                bool closingComesAfter = input.IndexOf('(') < input.IndexOf(')'); //checks if the closing parentasis comes after the opening one
+                bool balancedCount = input.Count(c => c == '(') == input.Count(c => c == '(');
+
+                if (includesClosing && closingComesAfter && balancedCount)
+                {
+                    Console.WriteLine("Correct use of ()");
+                }
+                else { Console.WriteLine("Incorrect use of parentasis"); }
+            }
         }
-
     }
 }
 
