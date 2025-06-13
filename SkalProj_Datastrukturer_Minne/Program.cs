@@ -279,7 +279,7 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 bool includesClosing = input.Contains(')');
                 bool closingComesAfter = input.IndexOf('(') < input.IndexOf(')'); //checks if the closing parentasis comes after the opening one
-                bool balancedCount = input.Count(c => c == '(') == input.Count(c => c == '(');
+                bool balancedCount = input.Count(c => c == '(') == input.Count(c => c == ')');
 
                 if (includesClosing && closingComesAfter && balancedCount)
                 {
