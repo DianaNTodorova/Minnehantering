@@ -176,7 +176,7 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
             List<string> customers = new List<string>() { "Ole", "Kalle", "Nalle", "Emma", "Daniel", "Anna" };
-            List<string> queue = new List<string>();
+            Stack<string> stack = new Stack<string>();
     
             int customerIndex = 0;
             Console.WriteLine("Ica opens and the cash register and it is empty. Press 1/ to add to the queue and 2/ to remove 3/reverse from the queue");
@@ -193,15 +193,15 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case "1":
                         Console.WriteLine(customers[customerIndex] + " enteres the queue.");
-                        queue.Add(customers[customerIndex]);
+                        stack.Push(customers[customerIndex]);
                         customerIndex++;
-                        Console.WriteLine("The queue contains: " + string.Join(" , ", queue));
+                        Console.WriteLine("The queue contains: " + string.Join(" , ", stack));
                         break;
 
                     case "2":
                         
-                        var lastIn = queue[queue.Count-1];
-                        queue.Remove(lastIn);
+                        
+                        var lastIn=stack.Pop();
                         Console.WriteLine(lastIn + " leaves the queue.");
                         //customerIndex--; // It shows that the customer once removed can enter the queue again. 
                         break;
@@ -245,7 +245,9 @@ namespace SkalProj_Datastrukturer_Minne
              */
             Console.WriteLine("Write a string to check if the parantesis are wellformed ");
             string input = Console.ReadLine();
-          
+            List<char>charOpen=new List<char>{ '{', '[', '(' };
+            List<char> charClose = new List<char> { '}', ']', ')' };
+
 
             // case { } 
             if (input != null && input.Contains('{'))
