@@ -124,7 +124,7 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
             List<string> customers= new List<string>() { "Ole","Kalle","Nalle", "Emma", "Daniel", "Anna"};
-            List<string> queue = new List<string>();
+            Queue<string> queue = new Queue<string>();
             int customerIndex = 0;
             Console.WriteLine("Ica opens and the cash register and it is empty. Press 1/ to add to the queue and 2/ to remove from the queue");
             
@@ -140,15 +140,15 @@ namespace SkalProj_Datastrukturer_Minne
                     {
                         case "1":
                             Console.WriteLine(customers[customerIndex] + " enteres the queue.");
-                            queue.Add(customers[customerIndex]);
+                            queue.Enqueue(customers[customerIndex]);
                             customerIndex++;
                         break;
 
                         case "2":
                         if (queue.Count>0)
                         {
-                            string firstIn = queue[0]; //the first customer in the queue if the list is not null
-                            queue.RemoveAt(0);
+                            string firstIn = queue.Dequeue(); //the first customer in the queue if the list is not null
+                           
                             Console.WriteLine( firstIn + " leaves the queue.");
 
                         }
