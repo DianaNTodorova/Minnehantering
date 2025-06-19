@@ -244,53 +244,35 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
-            Console.WriteLine("Write a string to check if the parantesis are wellformed ");
+            Console.WriteLine("Enter a string with curly braces:");
             string input = Console.ReadLine();
-            List<char>charOpen=new List<char>{ '{', '[', '(' };
-            List<char> charClose = new List<char> { '}', ']', ')' };
 
+            Stack<char> stack = new Stack<char>();
 
-            // case { } 
-            if (input != null && input.Contains('{'))
+            foreach (char c in input)
             {
-                bool includesClosing = input.Contains('}');
-                bool closingComesAfter = input.IndexOf('{') < input.IndexOf('}');
-                bool balancedCount = input.Count(c => c == '{') == input.Count(c => c == '}');
-
-                if (includesClosing && closingComesAfter && balancedCount)
+                if (c == '{' || c == '[' || c == '(')
                 {
-                    Console.WriteLine("Correct use of {}");
+                    stack.Push(c);
                 }
-                else { Console.WriteLine("Incorrect use of parentasis"); }
+                else if (c == '}' || c == ']' || c == ')')
+                {
+                    if (stack.Count == 0)
+                    {
+                        Console.WriteLine("Incorrect parentheses");
+                        return;
+                    }
+                    stack.Pop();
+                }
             }
 
-            // case [ ]
-            if (input.Contains('['))
-            {
-                bool includesClosing = input.Contains(']');
-                bool closingComesAfter = input.IndexOf('[') < input.IndexOf(']'); //checks if the closing parentasis comes after the opening one
-                bool balancedCount = input.Count(c => c == '[') == input.Count(c => c == ']');
-
-                if (includesClosing && closingComesAfter && balancedCount)
-                {
-                    Console.WriteLine("Correct use of []");
-                }
-                else { Console.WriteLine("Incorrect use of parentasis"); }
-            }
-            // case ( )
-            if (input.Contains('('))
-            {
-                bool includesClosing = input.Contains(')');
-                bool closingComesAfter = input.IndexOf('(') < input.IndexOf(')'); //checks if the closing parentasis comes after the opening one
-                bool balancedCount = input.Count(c => c == '(') == input.Count(c => c == ')');
-
-                if (includesClosing && closingComesAfter && balancedCount)
-                {
-                    Console.WriteLine("Correct use of ()");
-                }
-                else { Console.WriteLine("Incorrect use of parentasis"); }
-            }
+            if (stack.Count == 0)
+                Console.WriteLine("Correct parentheses");
+            else
+                Console.WriteLine("Incorrect parentheses");
         }
+
     }
+    
 }
 
