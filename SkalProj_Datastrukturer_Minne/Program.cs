@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -215,13 +216,13 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
 
-                        string reverseName = "";
-                        for (int i = name.Length - 1; i >= 0; i--)
-                        {
-                            reverseName += name[i];
+                        Stack<char> nameChar= new Stack<char>();
+                        foreach (char c in name)
+                        { 
+                        nameChar.Push(c);
                         }
-
-                        Console.WriteLine($"The reversed name is: {reverseName}");
+                        string reversedName = new string(nameChar.ToArray());
+                        Console.WriteLine($"The reversed name is: {reversedName} " );
                         break;
                     default:
                         Console.WriteLine("Invalid input. Use 1, 2, 3 or 'exit'.");
